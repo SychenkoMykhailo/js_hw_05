@@ -15,9 +15,11 @@
 // Передати в метод №7 колбек ф-ю що підносить числа в степінь
 // Написати всі методи і перевірити чи вони працюють
 
-const numbersDegree = function (degree) {
-  this.result = `${this.num1 ** degree} ; ${this.num2 ** degree}`;
-  this.showResult();
+const numbersDegree = {
+  numbersDegree(degree) {
+    this.result = `${this.num1 ** degree} ; ${this.num2 ** degree}`;
+    this.showResult();
+  },
 };
 
 class Calculator {
@@ -54,15 +56,16 @@ class Calculator {
     this.showResult();
   }
 
-  addFuncional(newFunc) {
-    Calculator.prototype.newF = newFunc;
+  addFuncional(newFunctional) {
+    Object.assign(Calculator.prototype, newFunctional);
+    console.log("New functional added");
   }
 }
 const calc = new Calculator();
-calc.askNumbers(12, 10);
+calc.askNumbers(50, 19);
 calc.numbersAddition();
 calc.numbersSubtraction();
 calc.numbersMultiplication();
 calc.numbersDivision();
 calc.addFuncional(numbersDegree);
-calc.newF(3);
+calc.numbersDegree(3);
